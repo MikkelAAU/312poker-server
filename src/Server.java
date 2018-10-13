@@ -41,8 +41,9 @@ public class Server {
 		return users;
 	}
 
-	public void removeUser(UserThread ut) {
+	public void removeUser(UserThread ut, String userName) {
 		users.remove(ut);
+		System.out.println(userName + " left the server");
 	}
 
 	public void sendToAll(String message, UserThread ut) {
