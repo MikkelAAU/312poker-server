@@ -42,9 +42,12 @@ public class Deck {
 		}
 	
 	
-	public void dealCard(Player player) {
+	public void deal(Player player, int numbOfCards) {
 		//Get next card and add to hand of the player
-        Card removedCard = deck.remove(0);
-        player.getHand().add(removedCard);
+		for (int i = 0; i < numbOfCards; i++) {
+			Card removedCard = deck.remove(0);
+	        player.getHand().add(removedCard);
+		}
+        
 	}
 }
