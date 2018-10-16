@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+
    public ArrayList<Card> hand;
    public int balance;
    public boolean fold;
@@ -43,4 +44,5 @@ public class Player {
             }
         }
     }
+
 }
