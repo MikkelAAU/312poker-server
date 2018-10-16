@@ -26,14 +26,4 @@ public class Card {
 		
 		return value + " of " + suit;
 	}
-	
-	
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-
-	}
-
 }

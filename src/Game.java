@@ -1,33 +1,34 @@
-public class Game {
+import java.util.*;
+
+public class Game extends Deck{
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+
 		System.out.println("\n------------------Filling deck----------------------\n");
 		
 		Deck deck = new Deck();			// Deck is automatically filled when instantiated.
 		
+		Player p1 = new Player();		// Player obj
+		Player p2 = new Player();
+		Player p3 = new Player();
+		
+
 		deck.printDeck();
-		System.out.println("\n------------------SHUFFLING DECK----------------------\n");
+		System.out.println("\n------------------SHUFFLING DECK---------------------\n");
 		
 		deck.shuffle();
 		deck.printDeck();
+		
+		System.out.println("\n------------------Adding players to 'players' ArrayList---------\n");
+		
+		deck.addPlayer(p1);
+		deck.addPlayer(p2);
+		deck.addPlayer(p3);
+		deck.printPlayers();
 			
-		System.out.println("\n------------------Dealing cards----------------------\n");
+		System.out.println("\n------------------Starting first round----------------------\n");
 		
-		Player p1,p2,p3;
-		p1 = new Player();
-		p2 = new Player();
-		p3 = new Player();
-		
-		Player[] players = {p1,p2,p3};
-		
-		// Deals 2 cards to each Player object in the Player[].
-		for (int i=0; i<players.length; i++) {
-			
-			deck.deal(players[i], 2);
-		
-		}
+		deck.roundOne();
 		
 		System.out.println("\n------------------Player 1 hand:----------------------\n");
 		p1.printHand();
@@ -35,8 +36,5 @@ public class Game {
 		p2.printHand();
 		System.out.println("\n------------------Player 3 hand:----------------------\n");
 		p3.printHand();
-		
-
 	}
-
 }
