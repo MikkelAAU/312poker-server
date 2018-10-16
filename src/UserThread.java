@@ -4,47 +4,55 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class UserThread extends Thread {
+    public Player player;
     private Server server;
     private Socket socket;
     private String userName;
     private DataOutputStream output;
     private DataInputStream input;
+    int clientID = -1;
 
-
-    public UserThread(Server server, Socket socket) {
+    public UserThread(Server server, Socket socket, int i) {
         this.server = server;
         this.socket = socket;
+        this.clientID = i;
+
     }
 
-    @Override
     public void run() {
+        System.out.println("Accepted Client : Player " + clientID + " : Address - "
+                + socket.getInetAddress().getHostName());
         try {
             input = new DataInputStream(socket.getInputStream());
             output = new DataOutputStream(socket.getOutputStream());
 
             userName = input.readUTF();
-            System.out.println(userName + " joined the server");
-            server.sendToAll(userName + " joined the server.", this);
+            System.out.println("Player " + clientID + ": " + userName + " joined the server");
+            server.sendChatToAll(userName + " joined the server.", this);
+
 
             boolean connect = true;
             while (connect) {
                 String clientMessage = input.readUTF();
-                server.sendToAll(userName + ": " + clientMessage, this);
+                server.sendChatToAll(userName + ": " + clientMessage, this);
                 if(clientMessage.equalsIgnoreCase("quit")) {
-                    server.sendToAll(userName + " disconnected from the server", this);
+                    server.sendChatToAll(userName + " disconnected from the server", this);
                     server.removeUser(this, userName);
                     socket.close();
                     connect = false;
                 }
                 if (clientMessage.equalsIgnoreCase("start")) {
-                    System.out.println(server.getUsers().size());
-                    startSession();
+                    startGame();
                 }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public void sendMessage(String message) {
@@ -56,8 +64,8 @@ public class UserThread extends Thread {
         }
     }
 
-    public void startSession() {
-        HandleSession session = new HandleSession(server.getUsers());
-        session.start();
+    public void startGame() {
+        Game game = new Game(server.getUsers());
+        game.start();
     }
 }
