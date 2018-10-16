@@ -1,9 +1,28 @@
-import java.util.*;
+import java.util.ArrayList;
 
-public class Game extends Deck{
+public class Game {
+	public Player players[];
+	public Deck deck;
+
+	public Game(ArrayList<UserThread> users) {
+		players = new Player[users.size()];
+		for (int i = 0; i<users.size(); i++)
+			players[i] = users.get(i).player;
+		deck = new Deck();
+		for (Player p: players)
+			p.reset();
+	}
+
+	public void start() {
+		for (int i = 0; i<5; i++){
+			for (Player p: players){
+			}
+		}
+
+	}
 
 	public static void main(String[] args) {
-
+    
 		System.out.println("\n------------------Filling deck----------------------\n");
 		
 		Deck deck = new Deck();			// Deck is automatically filled when instantiated.
