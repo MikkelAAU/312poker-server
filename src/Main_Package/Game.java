@@ -1,3 +1,4 @@
+package Main_Package;
 import java.util.ArrayList;
 
 public class Game {
@@ -29,9 +30,8 @@ public class Game {
 		
 		Player p1 = new Player();		// Player obj
 		Player p2 = new Player();
-		Player p3 = new Player();
+		Player p3 = new Player();		
 		
-
 		deck.printDeck();
 		System.out.println("\n------------------SHUFFLING DECK---------------------\n");
 		
@@ -55,5 +55,14 @@ public class Game {
 		p2.printHand();
 		System.out.println("\n------------------Player 3 hand:----------------------\n");
 		p3.printHand();
+		
+
+		System.out.println("\n------------------Starting second round----------------------\n");		
+		deck.roundTwo();
+		deck.printTable();
+		
+		deck.yourHand();
+		deck.printCardComp();
+
 	}
 }

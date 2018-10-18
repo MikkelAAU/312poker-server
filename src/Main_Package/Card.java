@@ -1,3 +1,4 @@
+package Main_Package;
 
 public class Card {
 	
@@ -6,7 +7,7 @@ public class Card {
 	private Value value;
     
 	// Constructor
-    public Card(Value value,Suit suit) {
+    public Card (Value value,Suit suit) {
         
         this.suit = suit;
         this.value = value;

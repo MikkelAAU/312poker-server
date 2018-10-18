@@ -1,29 +1,23 @@
+package Main_Package;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+
 
 public class Deck extends Player{
 
 	// Collection of cards
 	private ArrayList<Card> deck; 
 
-	private ArrayList<Player> players = new ArrayList<>();
 
+	private ArrayList<Player> players = new ArrayList<>();
 	ArrayList<Card> table = new ArrayList<>();
 	ArrayList<Card> burnPile = new ArrayList<>();
+	ArrayList<Card> cardComp = new ArrayList<>();
 
+	
 	private Suit suits[];
-
 	private Value values[];
-
-	//	Player p1 = new Player();
-	//	Player p2 = new Player();
-	//	Player p3 = new Player();
-	//	
-	//	ArrayList<Player> players = new ArrayList<>();
-
 
 	// Constructor. Fills a deck.
 	public Deck() {
@@ -46,7 +40,13 @@ public class Deck extends Player{
 	public void printPlayers(){
 		System.out.println(players);
 	}
-
+ public void printTable() {
+	 System.out.println(table);
+ }
+ 
+ public void printCardComp() {
+	 System.out.print(cardComp);
+ }
 
 	public void shuffle() {
 
@@ -65,7 +65,6 @@ public class Deck extends Player{
 	}
 
 
-
 	// Deal function for table.
 	public void deal(ArrayList<Card> list) {
 		//Get next card and add to hand of the player
@@ -75,7 +74,12 @@ public class Deck extends Player{
 
 	// Burns one card from the deck and adds it to the burn pile.
 	public void burn(ArrayList<Card> list) {
-		//Get next card and add to hand of the player
+		Card removedCard = deck.remove(0);
+		list.add(removedCard);
+	}
+	
+	//the cards on the table
+	public void cardTable(ArrayList<Card> list) {
 		Card removedCard = deck.remove(0);
 		list.add(removedCard);
 	}
@@ -86,14 +90,28 @@ public class Deck extends Player{
 
 	public void roundOne() {
 		for (int i=0; i<players.size(); i++) {
-
 			this.deal(players.get(i), 2);			
 		}
 	}
 	
-//	public void sortHand() {
-//		Collections.sort(deck);
-//		
-//	}
+	public void roundTwo() {
+	this.deal(burnPile);
+	this.deal(table);
+	this.deal(burnPile);
+	this.deal(table);
+	this.deal(burnPile);
+	this.deal(table);
+	}
+		
+	
+	public void yourHand() {
+		for (int i= 0; i<table.size();i++) {
+			this.cardComp.add(table.get(i));
+		}		
+	}
+
+	
+	
+	
 }
 
