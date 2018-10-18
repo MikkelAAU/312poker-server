@@ -1,3 +1,5 @@
+package Main_Package;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ public class Player {
    public int balance;
    public boolean fold;
    public int current_bet;
+//   public Card[] pokerHand;
 
    public Player() {
        this.hand = new ArrayList<Card>();
@@ -14,6 +17,8 @@ public class Player {
        this.fold = false;
        this.current_bet = 0;
    }
+   
+  
 
    public ArrayList<Card> getHand() {
        return hand;
@@ -44,5 +49,6 @@ public class Player {
             }
         }
     }
+    
 
 }

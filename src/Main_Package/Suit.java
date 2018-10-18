@@ -1,3 +1,4 @@
+package Main_Package;
 
 public enum Suit {
 	Hearts("Hearts"), Spades("Spades"), Diamonds("Dimonds"), Clubs("Clubs");
@@ -5,7 +6,7 @@ public enum Suit {
     
     private final String suitText;
     
-    //The Constructor for the suits
+    //The Constructor for the suits 	
     private Suit(String suitText) {
     	this.suitText = suitText;
     }
