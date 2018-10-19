@@ -61,7 +61,7 @@ public class Game {
 		deck.roundTwo();
 		deck.printTable();
 		
-		deck.yourHand();
+		deck.yourHand(p1);
 		deck.printCardComp();
 
 	}

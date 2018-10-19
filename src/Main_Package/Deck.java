@@ -104,10 +104,10 @@ public class Deck extends Player{
 	}
 		
 	
-	public void yourHand() {
-		for (int i= 0; i<table.size();i++) {
-			this.cardComp.add(table.get(i));
-		}		
+	public void yourHand(Player player) {
+			this.cardComp.addAll(table);
+			this.cardComp.addAll(player.getHand());
+			
 	}
 
 	
