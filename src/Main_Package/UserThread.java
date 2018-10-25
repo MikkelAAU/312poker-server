@@ -11,40 +11,41 @@ public class UserThread extends Thread {
     private String userName;
     private DataOutputStream output;
     private DataInputStream input;
-    int clientID = -1;
+    private boolean readyCheck;
 
-    public UserThread(Server server, Socket socket, int i) {
+    public UserThread(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
-        this.clientID = i;
-
     }
 
+    @Override
     public void run() {
-        System.out.println("Accepted Client : Player " + clientID + " : Address - "
-                + socket.getInetAddress().getHostName());
         try {
             input = new DataInputStream(socket.getInputStream());
             output = new DataOutputStream(socket.getOutputStream());
 
             userName = input.readUTF();
-            System.out.println("Player " + clientID + ": " + userName + " joined the server");
-            server.sendChatToAll(userName + " joined the server.", this);
+            System.out.println(userName + " joined the server");
+            server.sendToAll(userName + " joined the server.", this);
 
-
-            boolean connect = true;
-            while (connect) {
+            readyCheck = true;
+            while (readyCheck) {
                 String clientMessage = input.readUTF();
-                server.sendChatToAll(userName + ": " + clientMessage, this);
+                server.sendToAll(userName + ": " + clientMessage, this);
                 if(clientMessage.equalsIgnoreCase("quit")) {
-                    server.sendChatToAll(userName + " disconnected from the server", this);
+                    server.sendToAll(userName + " disconnected from the server", this);
                     server.removeUser(this, userName);
                     socket.close();
-                    connect = false;
+
+                    readyCheck = false;
+
                 }
-                if (clientMessage.equalsIgnoreCase("start")) {
-                    startGame();
+                if(clientMessage.equalsIgnoreCase("ready")) {
+                    server.sendToAll(userName + " is ready", this);
+                    readyCheck = false;
+                    server.startGame();
                 }
+
             }
 
         } catch (IOException e) {
@@ -63,10 +64,5 @@ public class UserThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void startGame() {
-        Game game = new Game(server.getUsers());
-        game.start();
     }
 }
