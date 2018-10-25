@@ -12,10 +12,13 @@ public class UserThread extends Thread {
     private DataOutputStream output;
     private DataInputStream input;
     private boolean readyCheck;
+	private int bettingCash;
+	private int myBet;
 
     public UserThread(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
+		bettingCash = 2000;
     }
 
     @Override
@@ -53,10 +56,8 @@ public class UserThread extends Thread {
         }
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
+    //methods
+    
     public void sendMessage(String message) {
         try {
             output.writeUTF(message);
@@ -65,4 +66,38 @@ public class UserThread extends Thread {
             e.printStackTrace();
         }
     }
+    
+	public void sendInt(int number) {
+		try {
+			output.writeInt(number);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
+	
+    //setter and getter
+	
+    public String getUserName() {
+        return userName;
+    }
+	
+	public void setMyBet(int myBet) {
+		this.myBet = myBet;
+	}
+	public int getMyBet() {
+		return myBet;
+	}
+	
+	public void setBettingCash(int bettingCash) {
+		this.bettingCash -= bettingCash;
+	}
+	public int getBettingCash() {
+		return bettingCash;
+	}
+	
+	public boolean isReadyCheck() {
+		return readyCheck;
+	}
 }
