@@ -1,4 +1,5 @@
 package Main_Package;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -6,11 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Server {
-
-
     private int port;
     private ArrayList<UserThread> users;
-
 
     public Server(int port) {
         this.port = port;
@@ -20,20 +18,20 @@ public class Server {
     public static void main(String[] args) {
         Server server = new Server(6969);
         server.initiateServer();
-
     }
 
     public void initiateServer() {
         try {
+            @SuppressWarnings("resource")
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println("Server started at " + new Date());
-            int id = 1;
 
             while (true) {
                 Socket socket = serverSocket.accept();
-                UserThread newUser = new UserThread(this, socket, id++);
+                UserThread newUser = new UserThread(this, socket);
                 users.add(newUser);
                 newUser.start();
+                System.out.println(users.size());
             }
 
         } catch (IOException e) {
@@ -51,13 +49,28 @@ public class Server {
         System.out.println(userName + " left the server");
     }
 
-    public void sendChatToAll(String message, UserThread ut) {
+    public void sendToAll(String message, UserThread ut) {
         for (UserThread userThread : users) {
             if (userThread != ut)
                 userThread.sendMessage(message);
         }
-
     }
-}
 
+    public void startGame() {
+        boolean start = true;
+        for (UserThread userThread : users) {
+            if (userThread.isReadyCheck() == true) {
+                start = false;
+            }
+        }
+
+        if(start) {
+            for (UserThread userThread : users) {
+                userThread.sendMessage("Game started");
+            }
+            new Thread(new HandleASession(this)).start();
+        }
+    }
+
+}
 
