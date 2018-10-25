@@ -6,6 +6,8 @@ To start a game a server is required to be running, when a server is running it 
 
 The server side is developed by Jons Valvik (jvalvik), Mikkel Rosholm (dumleman + MikkelAAU) and Theo Khumsan (TheoAAU)
 
+--------------------------------------------------------------------------------------------------------------------------
+
 Project Poker Server:
 
 Before scrum:
@@ -26,6 +28,8 @@ Sprint 1 - Day 5
 Again the team meets to in the morning to discuss progress and issues. Many classes have successfully been implemented (card, deck, suit, value), other classes require a lot of work to function, but that will be the goal of the next sprint, this sprint ends today. At the end of the day the group tries to connect the server and client to ensure that connection can be established and that data can be sent and received between the clients. This test proves successful and the team therefore goes home in a good mood.
 
 In the morning of day 6 the team met up for a review / retrospective meeting, to discuss how the first sprint went and what difficulties there were and how the workload was, and there were so far no big differences and the team were happy with the first progress but recognised that the next sprint should be more focused on the networking part of the assignment and linking together the classes and the game in its entirety.
+
+------------------------------------------------------------------------------------------------------------------------------
 
 Sprint 2 - day 0 - server
 Goals for the 2. sprint:
