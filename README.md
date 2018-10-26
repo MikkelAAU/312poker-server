@@ -18,7 +18,7 @@ Step 2:
 Download and install the java development kit from this link: https://goo.gl/KppQHL
 
 Step 3:
-After install find the javac file on your computer possibly here: C:\Program Files\Java\jdk1.8.0_162\bin - it can also be in the program files (x86) and copy the file location, just like the above here ↑  ↑  ↑  ↑  ↑  ↑  ↑  ↑  ↑  ↑.
+After install find the javac file on your computer possibly here: C:\Program Files\Java\jdk1.8.0_162\bin - it can also be in the program files (x86) and copy the file location, just like the above here ↑   ↑   ↑   ↑   ↑   ↑   ↑   ↑   ↑   ↑.
 
 Step 4:
 Now search for 'edit the system environment variables' in the search bar or on your system. Press the button named 'Environment Variables...' 
