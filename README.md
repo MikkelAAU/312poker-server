@@ -10,6 +10,8 @@ Find the adjoining client here: https://github.com/MikkelAAU/312poker-client
 
 --------------------------------------------------------------------------------------------------------------------------
 
+                                                        Gameplay
+
 In hold'em, players receive two down cards as their personal hand (holecards), after which there is a round of betting. Three table cards are turned simultaneously (called the flop) and another round of betting occurs. The next two board cards are turned one at a time, with a round of betting after each card. The board cards are community cards, and a player can use any five-card combination from among the board and personal cards. A player can even use all of the board cards and no personal cards to form a hand ("play the board").
 
   Rounds of Betting:
