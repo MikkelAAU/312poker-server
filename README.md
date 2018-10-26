@@ -8,7 +8,6 @@ The server side is developed by Jons Valvik (jvalvik), Mikkel Rosholm (dumleman 
 
 Find the adjoining client here: https://github.com/MikkelAAU/312poker-client
 
---------------------------------------------------------------------------------------------------------------------------
 
                                              Step-by-Step guide for cmd-setup
                                              
@@ -30,22 +29,24 @@ Now search for 'edit the system environment variables' in the search bar or on y
 Double click 'Path', press the button 'New' and paste the abovementioned link location in the open field. Press 'okay' to close all windows.
 
   Step 6:
-Open CMD - locate the java files by using the 'cd' command until your in the right directory like this: C:\Users\Bloon>cd desktop/pokertesting-master/src
+Open CMD - Right click the top white bar and press 'properties' - go to fonts and choose 'Lucida Console' and click okay.
 
-  Step 7:
-Create the javac version of the server by entering in cmd: javac Server.java
+  Step 7: 
+If you wish to play on you own computer localhost will work as IP later when configuring clients, but if you wish to play on multiple computers then you will need to obtain the correct ip from cmd before the start of the game. This is done by entering 'ipconfig' in cmd and copying the IPV4 address like this example: 192.168.??.??  -  have this ready for when creating clients for the server.
 
   Step 8:
-Now that the javac version is created you can open the server in cmd by entering: java Server
-Remember capital S in server.
+locate the java files by using the 'cd' command until your in the right directory like this: C:\Users\Bloon>cd desktop/312poker-server/Main_package/src
 
-  Step 9: 
-Type in the default port 8000
+  Step 9:
+Create the javac version of the server by entering in cmd: javac -encoding UTF8 Server.java
 
   Step 10:
-Now clients can join the server and play the game.
+Now that the javac version is created you can open the server in cmd by entering: java Server
+- Remember capital S in server.
 
---------------------------------------------------------------------------------------------------------------------------
+  Step 11: 
+Type in a port number you want to open up a server on, do not select one below 1024 as they are reserved ports.
+
 
                                                      Gameplay
 
