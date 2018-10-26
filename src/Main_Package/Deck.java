@@ -2,6 +2,8 @@ package Main_Package;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Comparator;
 
 
 public class Deck extends Player{
@@ -70,6 +72,7 @@ public class Deck extends Player{
 		//Get next card and add to hand of the player
 		Card removedCard = deck.remove(0);
 		list.add(removedCard);
+		//Collections.sort(list, Collections.reverseOrder());
 	}
 
 	// Burns one card from the deck and adds it to the burn pile.
@@ -102,16 +105,38 @@ public class Deck extends Player{
 	this.deal(burnPile);
 	this.deal(table);
 	}
+	
+	public void roundThree() {
+	this.deal(burnPile);
+	this.deal(table);
+	}
+	
+	public void roundFour() {
+	this.deal(burnPile);
+	this.deal(table);
+	}
 		
 	
 	public void yourHand(Player player) {
 			this.cardComp.addAll(table);
-			this.cardComp.addAll(player.getHand());
+			this.cardComp.addAll(player.getHand());			// Adds cards on table and in the player hand into a single arraylist. Used for detecting combos.
+			Collections.sort(cardComp, Collections.reverseOrder(new SortByValue()));
 			
+			Collections.sort(table, Collections.reverseOrder(new SortByValue()));
+			System.out.println("Table cards: " + table + "\n");
+			
+			Collections.sort(player.getHand(), Collections.reverseOrder(new SortByValue()));
+			System.out.println("Your hand (" + player + "): " + player.getHand() + "\n");			
 	}
-
 	
 	
+	class SortByValue implements Comparator<Card> {
+		// Used for sorting in ascending order of
+		// roll number
+		public int compare(Card a, Card b) {
+			return a.getCardValue().getCardValue() - b.getCardValue().getCardValue();
+		}
+	}
 	
 }
 

@@ -3,6 +3,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class UserThread extends Thread {
     public Player player;
@@ -14,6 +15,7 @@ public class UserThread extends Thread {
     private boolean readyCheck;
 	private int bettingCash;
 	private int myBet;
+	private ArrayList<Card> userHand;
 
     public UserThread(Server server, Socket socket) {
         this.server = server;
@@ -99,5 +101,19 @@ public class UserThread extends Thread {
 	
 	public boolean isReadyCheck() {
 		return readyCheck;
+	}
+	
+	public ArrayList<Card> getUserHand() {
+		return userHand;
+	}
+	
+	public void sendCard(String value, String suit) {
+		try {
+			output.writeUTF(value);
+			output.writeUTF(suit);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

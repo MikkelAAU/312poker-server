@@ -59,10 +59,19 @@ public class Game {
 
 		System.out.println("\n------------------Starting second round----------------------\n");		
 		deck.roundTwo();
-		deck.printTable();
 		
 		deck.yourHand(p1);
-		deck.printCardComp();
+		deck.yourHand(p2);
+		deck.yourHand(p3);
+		
+		System.out.println("\n------------------Starting third round----------------------\n");		
+		deck.roundThree();
+		
+		deck.yourHand(p1);
+		deck.yourHand(p2);
+		deck.yourHand(p3);
+		
+		//deck.printCardComp();
 
 	}
 }

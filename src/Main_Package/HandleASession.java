@@ -32,8 +32,53 @@ public class HandleASession implements Runnable {
 		//
 		for (UserThread ut : server.getUsers()) {
 			ut.sendInt(server.getUsers().size());
-		}
+		}	
 		
-	}
+		for (int round = 1; round <= 4; round++) {
 
+			switch (round) {
+
+			case 1:
+				for (UserThread ut : server.getUsers()) {
+					for (int i = 0; i < 2; i++) {
+						Card temp = deck.get(0);
+						deck.remove(0);
+						ut.getUserHand().add(temp);
+						ut.sendCard(temp.getCardValue().toString(), temp.getSuit().toString());
+					}
+				}
+				break;
+
+			case 2:
+
+				for (int i = 0; i < 3; i++) {
+					Card temp = deck.get(0);
+					deck.remove(0);
+					for (UserThread ut : server.getUsers()) {
+						ut.getUserHand().add(temp);
+						ut.sendCard(temp.getCardValue().toString(), temp.getSuit().toString());
+					}
+				}
+				break;
+
+			case 3:
+				Card temp = deck.get(0);
+				deck.remove(0);
+				for (UserThread ut : server.getUsers()) {
+					ut.getUserHand().add(temp);
+					ut.sendCard(temp.getCardValue().toString(), temp.getSuit().toString());
+				}
+				break;
+
+			case 4:
+				Card temp1 = deck.get(0);
+				deck.remove(0);
+				for (UserThread ut : server.getUsers()) {
+					ut.getUserHand().add(temp1);
+					ut.sendCard(temp1.getCardValue().toString(), temp1.getSuit().toString());
+				}
+				break;
+			}
+		}
+	}	
 }
