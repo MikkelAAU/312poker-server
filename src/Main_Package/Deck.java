@@ -11,13 +11,12 @@ public class Deck extends Player{
 	// Collection of cards
 	private ArrayList<Card> deck; 
 
-
 	private ArrayList<Player> players = new ArrayList<>();
 	ArrayList<Card> table = new ArrayList<>();
-	ArrayList<Card> burnPile = new ArrayList<>();
+	//ArrayList<Card> burnPile = new ArrayList<>();
 	ArrayList<Card> cardComp = new ArrayList<>();
 
-	
+
 	private Suit suits[];
 	private Value values[];
 
@@ -38,24 +37,26 @@ public class Deck extends Player{
 	public void printDeck(){
 		System.out.println(deck);
 	}
-	
+
+	// Prints all players in the 'players' ArrayList
 	public void printPlayers(){
 		System.out.println(players);
 	}
- public void printTable() {
-	 System.out.println(table);
- }
- 
- public void printCardComp() {
-	 System.out.print(cardComp);
- }
-
-	public void shuffle() {
-
-		Collections.shuffle(deck);
-
+	
+	// Prints the table ArrayList
+	public void printTable() {
+		System.out.println(table);
 	}
 
+	// Prints the cardComp ArrayList
+	public void printCardComp() {
+		System.out.print(cardComp);
+	}
+
+	// Uses built in method for shuffling the deck in a random way.
+	public void shuffle() {
+		Collections.shuffle(deck);
+	}
 
 	// Deal function for players
 	public void deal(Player player, int numbOfCards) {
@@ -80,56 +81,58 @@ public class Deck extends Player{
 		Card removedCard = deck.remove(0);
 		list.add(removedCard);
 	}
-	
+
 	//the cards on the table
 	public void cardTable(ArrayList<Card> list) {
 		Card removedCard = deck.remove(0);
 		list.add(removedCard);
 	}
 
+	// Adds a player to the 'players' ArrayList
 	public void addPlayer(Player player) {
 		players.add(player);
 	}
 
+	// 
 	public void roundOne() {
 		for (int i=0; i<players.size(); i++) {
 			this.deal(players.get(i), 2);			
 		}
 	}
-	
+
 	public void roundTwo() {
-	this.deal(burnPile);
-	this.deal(table);
-	this.deal(burnPile);
-	this.deal(table);
-	this.deal(burnPile);
-	this.deal(table);
+		//this.deal(burnPile);
+		this.deal(table);
+		//this.deal(burnPile);
+		this.deal(table);
+		//this.deal(burnPile);
+		this.deal(table);
 	}
-	
+
 	public void roundThree() {
-	this.deal(burnPile);
-	this.deal(table);
+		//this.deal(burnPile);
+		this.deal(table);
 	}
-	
+
 	public void roundFour() {
-	this.deal(burnPile);
-	this.deal(table);
+		//this.deal(burnPile);
+		this.deal(table);
 	}
-		
-	
+
+
 	public void yourHand(Player player) {
-			this.cardComp.addAll(table);
-			this.cardComp.addAll(player.getHand());			// Adds cards on table and in the player hand into a single arraylist. Used for detecting combos.
-			Collections.sort(cardComp, Collections.reverseOrder(new SortByValue()));
-			
-			Collections.sort(table, Collections.reverseOrder(new SortByValue()));
-			System.out.println("Table cards: " + table + "\n");
-			
-			Collections.sort(player.getHand(), Collections.reverseOrder(new SortByValue()));
-			System.out.println("Your hand (" + player + "): " + player.getHand() + "\n");			
+		this.cardComp.addAll(table);
+		this.cardComp.addAll(player.getHand());			// Adds cards on table and in the player hand into a single arraylist. Used for detecting combos.
+		Collections.sort(cardComp, Collections.reverseOrder(new SortByValue()));
+
+		Collections.sort(table, Collections.reverseOrder(new SortByValue()));
+		System.out.println("Table cards: " + table + "\n");
+
+		Collections.sort(player.getHand(), Collections.reverseOrder(new SortByValue()));
+		System.out.println("Your hand (" + player + "): " + player.getHand() + "\n");			
 	}
-	
-	
+
+
 	class SortByValue implements Comparator<Card> {
 		// Used for sorting in ascending order of
 		// roll number
@@ -137,6 +140,6 @@ public class Deck extends Player{
 			return a.getCardValue().getCardValue() - b.getCardValue().getCardValue();
 		}
 	}
-	
+
 }
 
