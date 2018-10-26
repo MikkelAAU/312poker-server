@@ -16,6 +16,7 @@ public class UserThread extends Thread {
 	private int bettingCash;
 	private int myBet;
 	private ArrayList<Card> userHand;
+	private boolean folded;
 
     public UserThread(Server server, Socket socket) {
         this.server = server;
@@ -107,10 +108,49 @@ public class UserThread extends Thread {
 		return userHand;
 	}
 	
+	public boolean isFolded() {
+		return folded;
+	}
+	
+	public void setFolded(boolean folded) {
+		this.folded = folded;
+	}
+	
 	public void sendCard(String value, String suit) {
 		try {
 			output.writeUTF(value);
 			output.writeUTF(suit);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public int readInt() {
+		int value = 0;
+		try {
+			value = input.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return value;
+	}
+	
+	public String readString() {
+		String string = "default";
+		try {
+			string = input.readUTF();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return string;
+	}
+	
+	public void sendBoolean(boolean condition) {
+		try {
+			output.writeBoolean(condition);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
