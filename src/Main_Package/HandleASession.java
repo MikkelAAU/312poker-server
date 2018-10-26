@@ -13,9 +13,10 @@ public class HandleASession implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		UserThread actingPlayer;
 		// set blind (someone who has money in the pot from the beginning)
 		int currentHighestBet = 10;
+		int totalPot = currentHighestBet;
 		server.getUsers().get(server.getUsers().size()-1).setMyBet(currentHighestBet);
 		server.getUsers().get(server.getUsers().size()-1).setBettingCash(currentHighestBet);
 
@@ -78,6 +79,78 @@ public class HandleASession implements Runnable {
 					ut.sendCard(temp1.getCardValue().toString(), temp1.getSuit().toString());
 				}
 				break;
+			}
+			for (int i = 0; i < server.getUsers().size(); i++) {
+				actingPlayer = server.getUsers().get(i);
+				if (!actingPlayer.isFolded()) {
+					actingPlayer.sendBoolean(true);
+					for (UserThread ut : server.getUsers()) {
+						if (ut != actingPlayer)
+							ut.sendBoolean(false);
+					}
+
+					String defaultMessage = "It is currently " + actingPlayer.getUserName()
+							+ "s turn. Wait until it's yours turn.";
+
+					server.sendToAll(defaultMessage, actingPlayer);
+
+					String message = "It's your acting turn." + '\n' + "Your current money Stack is: "
+							+ server.getUsers().get(i).getBettingCash() + '\n';
+					if (actingPlayer.getMyBet() == currentHighestBet) {
+						message = message.concat("You match the current highest bet: " + currentHighestBet + '\n'
+								+ "Use these commands: check raise fold");
+					} else {
+						message = message.concat("The current highest bet is: " + currentHighestBet + '\n'
+								+ "Use these commands: call raise fold");
+					}
+
+					actingPlayer.sendMessage(message);
+
+					boolean correctCommand = false;
+					do {
+						String command = actingPlayer.readString();
+						switch (command) {
+						
+						// Command for the player to check 
+						case "check":
+							actingPlayer.sendMessage("You checked this turn");
+							server.sendToAll(actingPlayer.getUserName() + " decided to check", actingPlayer);
+							correctCommand = true;
+							break;
+							
+							// Command for the player to raise
+						case "raise":						
+							currentHighestBet = actingPlayer.readInt();
+							totalPot += currentHighestBet - actingPlayer.getMyBet();
+							actingPlayer.setBettingCash(currentHighestBet - actingPlayer.getMyBet());
+							actingPlayer.setMyBet(currentHighestBet);
+							actingPlayer.sendMessage("You raised to: " + currentHighestBet);
+							server.sendToAll(actingPlayer.getUserName() + " decided to raise by: ", actingPlayer);
+							correctCommand = true;
+							break;
+
+							// Command for the player to fold 
+						case "fold":
+
+							break;
+
+						case "call":
+
+							break;
+							// If the player write an invalid command in the commandline 
+						default:
+							actingPlayer.sendMessage("Incorrect command");
+							System.out.println("Invalid command");
+							break;
+						}
+
+					} while (!correctCommand);
+				} else {
+					for (UserThread ut : server.getUsers()) {
+						ut.sendBoolean(false);
+					}
+
+				}
 			}
 		}
 	}	
