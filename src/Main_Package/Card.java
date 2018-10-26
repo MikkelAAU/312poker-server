@@ -13,11 +13,12 @@ public class Card {
         this.value = value;
     }
 	
-	// Methods
+	// Gets card suit
 	public Suit getSuit() {
 		return suit;
 	}
 	
+	// Gets card value
 	public Value getCardValue() {
 		return value;
 	}
