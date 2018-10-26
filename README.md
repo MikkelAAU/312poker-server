@@ -6,6 +6,8 @@ To start a game a server is required to be running, when a server is running it 
 
 The server side is developed by Jons Valvik (jvalvik), Mikkel Rosholm (dumleman + MikkelAAU) and Theo Khumsan (TheoAAU)
 
+Find the adjoining client here: https://github.com/MikkelAAU/312poker-client
+
 --------------------------------------------------------------------------------------------------------------------------
 
 Project Poker Server:
