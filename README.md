@@ -1,4 +1,4 @@
-# 312pokerServer
+                                                   Basis Manual
 
 The Server side of this Poker Texas hold'em game, consists of various classes that make it function with networking and multithreading on a basic level.
 
