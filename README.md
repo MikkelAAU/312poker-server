@@ -11,35 +11,38 @@ Find the adjoining client here: https://github.com/MikkelAAU/312poker-client
 --------------------------------------------------------------------------------------------------------------------------
 
                                              Step-by-Step guide for cmd-setup
-Step 1:
+                                             
+If step 1-5 has been done in client already then you can skip those
+
+  Step 1:
 Download the repository to your computer desktop as a zip and unzip it to a folder by the same name. 
 
-Step 2:
+  Step 2:
 Download and install the java development kit from this link: https://goo.gl/KppQHL
 
-Step 3:
+  Step 3:
 After install find the javac file on your computer possibly here: C:\Program Files\Java\jdk1.8.0_162\bin - it can also be in the program files (x86) and copy the file location, just like the above here ↑   ↑   ↑   ↑   ↑   ↑   ↑   ↑   ↑   ↑.
 
-Step 4:
+  Step 4: 
 Now search for 'edit the system environment variables' in the search bar or on your system. Press the button named 'Environment Variables...' 
 
-Step 5: 
+  Step 5: 
 Double click 'Path', press the button 'New' and paste the abovementioned link location in the open field. Press 'okay' to close all windows.
 
-Step 6:
+  Step 6:
 Open CMD - locate the java files by using the 'cd' command until your in the right directory like this: C:\Users\Bloon>cd desktop/pokertesting-master/src
 
-Step 7:
+  Step 7:
 Create the javac version of the server by entering in cmd: javac Server.java
 
-Step 8:
+  Step 8:
 Now that the javac version is created you can open the server in cmd by entering: java Server
 Remember capital S in server.
 
-Step 9: 
+  Step 9: 
 Type in the default port 8000
 
-Step 10:
+  Step 10:
 Now clients can join the server and play the game.
 
 --------------------------------------------------------------------------------------------------------------------------
