@@ -42,7 +42,7 @@ Create the javac version of the server by entering in cmd: javac -encoding UTF8 
 
   Step 10:
 Now that the javac version is created you can open the server in cmd by entering: java Server
-- Remember capital S in server.
+Remember capital S in server.
 
   Step 11: 
 Type in a port number you want to open up a server on, do not select one below 1024 as they are reserved ports.
