@@ -131,11 +131,23 @@ public class HandleASession implements Runnable {
 
 							// Command for the player to fold 
 						case "fold":
-
+							// folding command
+							actingPlayer.setFolded(true);
+							actingPlayer.sendMessage("You folded your hand");
+							server.sendToAll(actingPlayer.getUserName() + " decided to fold his hand",
+									actingPlayer);
+							correctCommand = true;
 							break;
 
 						case "call":
-
+							// calling command
+							actingPlayer.setBettingCash(currentHighestBet - actingPlayer.getMyBet());
+							totalPot += currentHighestBet - actingPlayer.getMyBet();
+							actingPlayer.setMyBet(currentHighestBet);
+							actingPlayer.sendMessage("You called to: " + currentHighestBet);
+							server.sendToAll(actingPlayer.getUserName() + " decided to call highest bet: ",
+									actingPlayer);
+							correctCommand = true;
 							break;
 							// If the player write an invalid command in the commandline 
 						default:
@@ -149,6 +161,10 @@ public class HandleASession implements Runnable {
 					for (UserThread ut : server.getUsers()) {
 						ut.sendBoolean(false);
 					}
+					server.sendToAll(actingPlayer.getUserName() + " this player folded his hand", actingPlayer);
+					server.sendToAll("Proceeding to next player: ", actingPlayer);
+					actingPlayer.sendMessage("You folded your hand");
+					actingPlayer.sendMessage("Proceeding to next player");
 
 				}
 			}
