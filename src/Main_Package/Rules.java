@@ -20,13 +20,13 @@ public class Rules {
 			playerHand.add(deck.get(0));
 			deck.remove(0);
 		}
-		// playerHand.add(new Card(Value.Ace, Suit.Spades));
-		// playerHand.add(new Card(Value.Ace, Suit.Hearts));
-		// playerHand.add(new Card(Value.King, Suit.Spades));
-		// playerHand.add(new Card(Value.Queen, Suit.Clubs));
-		// playerHand.add(new Card(Value.Queen, Suit.Spades));
-		// playerHand.add(new Card(Value.Jack, Suit.Spades));
-		// playerHand.add(new Card(Value.Ten, Suit.Spades));
+		 playerHand.add(new Card(Value.Ten, Suit.Spades));
+		 playerHand.add(new Card(Value.Six, Suit.Hearts));
+		 playerHand.add(new Card(Value.Nine, Suit.Spades));
+		 playerHand.add(new Card(Value.Queen, Suit.Clubs));
+		 playerHand.add(new Card(Value.Eight, Suit.Spades));
+		 playerHand.add(new Card(Value.Jack, Suit.Spades));
+		 playerHand.add(new Card(Value.Seven, Suit.Spades));
 
 		Collections.sort(playerHand, Collections.reverseOrder(new SortByValue()));
 		System.out.println(playerHand);
@@ -74,4 +74,53 @@ public class Rules {
             System.out.println("Found kinds:" + '\n' + kinds);
             return handResult;
         }
+        
+    	public static ArrayList<HandResult> checkStraight(ArrayList<Card> playerHand, ArrayList<HandResult> handResult) {
+    		String straight = "";
+    		for (int i = 0; i < playerHand.size() - 4; i++) {
+    			straight = playerHand.get(i).toString() + " ";
+    			int amountOfStraight = 0;
+
+    			// looking for regular straight:
+    			for (int j = i + 1; j < playerHand.size(); j++) {
+    				if (playerHand.get(j).getCardValue().getCardValue() == playerHand.get(i).getCardValue().getCardValue()
+    						- 1 - amountOfStraight) {
+    					amountOfStraight++;
+    					straight = straight.concat(playerHand.get(j).toString() + " ");
+    				}
+    				if (amountOfStraight == 4) {
+    					handResult.add(new HandResult(i, 4));
+    					break;
+    				}
+    			}
+    			if (amountOfStraight == 4)
+    				break;
+
+    			straight = playerHand.get(i).toString() + " ";
+    			amountOfStraight = 0;
+    			// looking for low ace straight:
+    			
+    			if (playerHand.get(i).getCardValue().getCardValue() == 14) {
+    				int fivePosition = 0;
+    				for (int j = i + 1; j < playerHand.size(); j++) {
+    					if (playerHand.get(j).getCardValue().getCardValue() == 5 - amountOfStraight) {
+    						if(playerHand.get(j).getCardValue().getCardValue() == 5)
+    							fivePosition = j;
+    						amountOfStraight++;
+    						straight = straight.concat(playerHand.get(j).toString() + " ");
+    					}
+    				}
+    				if (amountOfStraight == 4) {
+    					handResult.add(new HandResult(fivePosition, 4));
+    					break;
+    				}
+    			}
+    			straight = "None";
+    		}
+
+    		System.out.println("Found straight:" + '\n' + straight);
+    		return handResult;
+    	}
 }
+
+
