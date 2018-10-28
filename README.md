@@ -35,7 +35,7 @@ Open CMD - Right click the top white bar and press 'properties' - go to fonts an
 If you wish to play on you own computer localhost will work as IP later when configuring clients, but if you wish to play on multiple computers then you will need to obtain the correct ip from cmd before the start of the game. This is done by entering 'ipconfig' in cmd and copying the IPV4 address like this example: 192.168.??.??  -  have this ready for when creating clients for the server.
 
   Step 8:
-locate the java files by using the 'cd' command until your in the right directory like this: C:\Users\Bloon>cd desktop/312poker-server/src
+locate the java files by using the 'cd' command until your in the right directory like this: C:\Users\Bloon>cd desktop/312poker-server-master/src
 
   Step 9:
 Create the javac version of the server by entering in cmd: javac -encoding UTF8 Main_Package/Server.java
