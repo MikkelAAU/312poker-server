@@ -5,29 +5,36 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Server {
 	private int port;
 	private ArrayList<UserThread> users;
+	private boolean lobby;
 	private ServerSocket serverSocket;
 
 	public Server(int port) {
 		this.port = port;
+		lobby = true;
 		users = new ArrayList<>();
 	}
 
 	public static void main(String[] args) {
-		Server server = new Server(6969);
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Type the port of the server, the default should be 8000 ");
+		int paPort = scan.nextInt();
+		Server server = new Server(paPort);
+		scan.close();
 		server.initiateServer();
 	}
 
 	public void initiateServer() {
 		try {
-			@SuppressWarnings("resource")
-			ServerSocket serverSocket = new ServerSocket(port);
+
+			serverSocket = new ServerSocket(port);
 			System.out.println("Server started at " + new Date());
 
-			while (true) {
+			while (lobby) {
 				Socket socket = serverSocket.accept();
 				UserThread newUser = new UserThread(this, socket);
 				users.add(newUser);
@@ -66,6 +73,7 @@ public class Server {
 		}
 
 		if(start) {
+			lobby = false;
 			for (UserThread userThread : users) {
 				userThread.sendMessage("Game started");
 			}
@@ -78,4 +86,3 @@ public class Server {
 	}
 
 }
-
