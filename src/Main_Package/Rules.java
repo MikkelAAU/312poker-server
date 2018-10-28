@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Rules {
-	public static void main(String[] args) {
-
-		Rules rules = new Rules();
-		ArrayList<Card> deck = new ArrayList<>();
-		for (Suit suit : Suit.values()) {
-			for (Value value : Value.values()) {
-				deck.add(new Card(value, suit));
-			}
-		}
-		Collections.shuffle(deck);
-
-		ArrayList<Card> playerHand = new ArrayList<>();
-		for (int i = 0; i < 7; i += 1) {
-			playerHand.add(deck.get(0));
-			deck.remove(0);
-		}
-		playerHand.add(new Card(Value.Ten, Suit.Spades));
-		playerHand.add(new Card(Value.Six, Suit.Hearts));
-		playerHand.add(new Card(Value.Nine, Suit.Spades));
-		playerHand.add(new Card(Value.Queen, Suit.Clubs));
-		playerHand.add(new Card(Value.Eight, Suit.Spades));
-		playerHand.add(new Card(Value.Jack, Suit.Spades));
-		playerHand.add(new Card(Value.Seven, Suit.Spades));
-
-		Collections.sort(playerHand, Collections.reverseOrder(new SortByValue()));
-		System.out.println(playerHand);
-		// high card:
-		System.out.println("High card: " + playerHand.get(0));
-	}
+//	public static void main(String[] args) {
+//
+//		Rules rules = new Rules();
+//		ArrayList<Card> deck = new ArrayList<>();
+//		for (Suit suit : Suit.values()) {
+//			for (Value value : Value.values()) {
+//				deck.add(new Card(value, suit));
+//			}
+//		}
+//		Collections.shuffle(deck);
+//
+//		ArrayList<Card> playerHand = new ArrayList<>();
+//		for (int i = 0; i < 7; i += 1) {
+//			playerHand.add(deck.get(0));
+//			deck.remove(0);
+//		}
+//		playerHand.add(new Card(Value.Ten, Suit.Spades));
+//		playerHand.add(new Card(Value.Six, Suit.Hearts));
+//		playerHand.add(new Card(Value.Nine, Suit.Spades));
+//		playerHand.add(new Card(Value.Queen, Suit.Clubs));
+//		playerHand.add(new Card(Value.Eight, Suit.Spades));
+//		playerHand.add(new Card(Value.Jack, Suit.Spades));
+//		playerHand.add(new Card(Value.Seven, Suit.Spades));
+//
+//		Collections.sort(playerHand, Collections.reverseOrder(new SortByValue()));
+//		System.out.println(playerHand);
+//		// high card:
+//		System.out.println("High card: " + playerHand.get(0));
+//	}
 
 
 
